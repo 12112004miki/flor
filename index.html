@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="img/flowers.png" type="image/x-icon">
+  <title>Mensaje Especial</title>
+  <style>
+    /* Reset y fuente */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Courier New', monospace;
+    }
+
+    /* Fondo animado */
+    body {
+      background: linear-gradient(-45deg, #000000, #1C1C1C, #2B2B2B, #3D3D3D);
+      background-size: 400% 400%;
+      animation: gradientMove 20s ease infinite;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Partículas y flores */
+    .space {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      background-color: #fff;
+      border-radius: 50%;
+      animation: fall linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10px); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 0.8; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+
+    /* Contenedor principal */
+    .container {
+      max-width: 1000px;
+      z-index: 10;
+    }
+
+    /* Título */
+    .title {
+      font-size: 3.5rem;
+      margin-bottom: 30px;
+      color: yellow;
+      text-shadow: 0 0 10px yellow, 0 0 20px yellow;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 2s, transform 2s;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .title.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Mensajes */
+    .message {
+      font-size: 2rem;
+      margin: 30px 0;
+      color: #fff;
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 2s, transform 2s;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .message.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .message.red {
+      animation: heartbeat 1.5s infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.1); }
+      50% { transform: scale(1.2); }
+      75% { transform: scale(1.1); }
+    }
+
+    /* Botón */
+    .button {
+      margin-top: 50px;
+      opacity: 0;
+      transition: opacity 2s;
+    }
+
+    .button.visible {
+      opacity: 1;
+    }
+
+    .btn {
+      background: linear-gradient(90deg, #ffcc00, #ff6600, #ff0066, #9900ff);
+      background-size: 400% 400%;
+      border: none;
+      padding: 15px 45px;
+      font-size: 1.5rem;
+      color: #fff;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      box-shadow: 0 0 20px rgba(255, 204, 0, 0.8);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: gradientMove 6s ease infinite;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 35px rgba(255, 102, 255, 1);
+    }
+
+    /* Efecto máquina de escribir */
+    .hacker-effect {
+      border-right: 3px solid yellow;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 4s steps(40, end) forwards, blink-caret .8s infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink-caret {
+      0%, 100% { border-color: transparent; }
+      50% { border-color: yellow; }
+    }
+
+    /* Mensaje de tap */
+    .tap-hint {
+      position: absolute;
+      bottom: 30px;
+      font-size: 1.2rem;
+      color: #ffcc00;
+      text-shadow: 0 0 10px #ffcc00;
+      animation: pulse 1.5s infinite;
+      cursor: pointer;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.7; }
+    }
+
+    /* Responsivo */
+    @media (max-width: 768px) {
+      .title { font-size: 2.5rem; }
+      .message { font-size: 1.5rem; }
+      .btn { padding: 12px 30px; font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Fondo con partículas -->
+  <div class="space" id="space"></div>
+
+  <!-- Contenido principal -->
+  <div class="container">
+    <h1 class="title hacker-effect" id="title">UN PEQUEÑO DETALLE</h1>
+    <p class="message red" id="message1">NAHIDE</p>
+    <p class="message" id="message2">DE MI PARA TI</p>
+
+    <div class="button" id="button">
+      <button class="btn" onclick="location.href='index1.html'">
+        VER TU REGALO
+      </button>
+    </div>
+  </div>
+
+  <!-- Aviso para iniciar música -->
+  <div id="tap-to-start" class="tap-hint">
+    👉 Toca la pantalla para activar la música 🎶
+  </div>
+
+  <!-- Música -->
+  <audio id="background-music" loop>
+    <source src="audio.mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+  </audio>
+
+  <script>
+    // Crear efecto de espacio con partículas y flores
+    function createSpace() {
+      const space = document.getElementById('space');
+      for (let i = 0; i < 100; i++) createParticle(space);
+
+      setInterval(() => {
+        createParticle(space);
+      }, 200);
+    }
+
+    function createParticle(container) {
+      const particle = document.createElement('div');
+
+      if (Math.random() > 0.5) {
+        particle.innerHTML = "🌼";
+        particle.style.fontSize = Math.random() * 20 + 15 + "px";
+      } else {
+        particle.classList.add('particle');
+        const size = Math.random() * 2 + 1;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+      }
+
+      particle.style.position = "absolute";
+      particle.style.left = Math.random() * 100 + "%";
+      const duration = Math.random() * 10 + 5;
+      particle.style.animation = `fall ${duration}s linear`;
+
+      container.appendChild(particle);
+      setTimeout(() => particle.remove(), duration * 1000 + 1000);
+    }
+
+    // Mostrar elementos secuencialmente
+    function showElements() {
+      const title = document.getElementById('title');
+      const message1 = document.getElementById('message1');
+      const message2 = document.getElementById('message2');
+      const button = document.getElementById('button');
+
+      setTimeout(() => title.classList.add('visible'), 1000);
+      setTimeout(() => message1.classList.add('visible'), 3000);
+      setTimeout(() => message2.classList.add('visible'), 6000);
+      setTimeout(() => button.classList.add('visible'), 9000);
+    }
+
+    // Inicializar
+    window.onload = function() {
+      createSpace();
+      showElements();
+
+      const audio = document.getElementById('background-music');
+      const hint = document.getElementById('tap-to-start');
+
+      function startMusic() {
+        audio.play();
+        hint.style.display = 'none';
+      }
+
+      document.body.addEventListener('click', startMusic, { once: true });
+      document.body.addEventListener('touchstart', startMusic, { once: true });
+    };
+  </script>
+</body>
+</html>
