@@ -135,6 +135,62 @@ body {
   -webkit-animation: blooming-leaf-left var(--fl-speed) 1.9s backwards;
           animation: blooming-leaf-left var(--fl-speed) 1.9s backwards;
 }
+.flower--4 {
+  left: 8%;
+  transform: rotate(-25deg) scale(0.82);
+  -webkit-animation: moving-flower-1 5s linear infinite;
+          animation: moving-flower-1 5s linear infinite;
+}
+.flower--4 .flower__line {
+  height: 58vmin;
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s;
+}
+.flower--5 {
+  left: 78%;
+  transform: rotate(20deg) scale(0.82);
+  -webkit-animation: moving-flower-2 5.2s linear infinite;
+          animation: moving-flower-2 5.2s linear infinite;
+}
+.flower--5 .flower__line {
+  height: 56vmin;
+  -webkit-animation-delay: 0.8s;
+          animation-delay: 0.8s;
+}
+.flower--6 {
+  left: 32%;
+  transform: rotate(-10deg) scale(0.72);
+  -webkit-animation: moving-flower-3 5.5s linear infinite;
+          animation: moving-flower-3 5.5s linear infinite;
+}
+.flower--6 .flower__line {
+  height: 52vmin;
+  -webkit-animation-delay: 1.1s;
+          animation-delay: 1.1s;
+}
+.flower--7 {
+  left: 90%;
+  transform: rotate(18deg) scale(0.68);
+  -webkit-animation: moving-flower-1 6s linear infinite;
+          animation: moving-flower-1 6s linear infinite;
+}
+.flower--7 .flower__line {
+  height: 50vmin;
+  -webkit-animation-delay: 1.4s;
+          animation-delay: 1.4s;
+}
+.flowers {
+  position: relative;
+  transform: scale(1.12) translateX(-2%);
+}
+.flower__leaf {
+  background-color: #ffeb3b !important;
+  box-shadow: 0 0 12px rgba(255, 235, 59, 0.9), 0 0 20px rgba(255, 204, 0, 0.7) !important;
+}
+.flower__light {
+  background-color: #fff58a !important;
+  box-shadow: 0 0 12px rgba(255, 255, 0, 0.9), 0 0 16px rgba(255, 204, 0, 0.8) !important;
+}
 .flower__leafs {
   position: relative;
   -webkit-animation: blooming-flower 2s backwards;
